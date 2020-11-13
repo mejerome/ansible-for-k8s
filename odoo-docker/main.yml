@@ -11,7 +11,7 @@
         name: "postgres:{{ postgres_version }}"
         source: pull
 
-    - name: Pull the Odoo docker image
+    - name: Pull the odoo docker image
       docker_image:
         name: "odoo:{{ odoo_version }}"
         source: pull
@@ -19,6 +19,7 @@
     - name: Start postgres server
       docker_container:
         name: db
+        image: "postgres:{{ postgres_version }}"
         detach: yes
         env:
           POSTGRES_USER: odoo
