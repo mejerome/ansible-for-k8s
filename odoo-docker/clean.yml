@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Stop postgres server
+      docker_container:
+        name: db
+        state: stopped
+
+    - name: Stop odoo server
+      docker_container:
+        name: "{{ container_name }}"
+        state: stopped

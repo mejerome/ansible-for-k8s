@@ -1,0 +1,5 @@
+addons_dir: ~/odoo/addons/
+postgres_version: "10"
+odoo_version: "latest"
+container_name: "odoo-server"
+published_ports: "8069:8069"
