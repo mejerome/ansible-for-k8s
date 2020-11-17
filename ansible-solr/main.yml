@@ -12,7 +12,7 @@
         name: "{{ container_name }}"
         command: sleep infinity
 
-    - name: Add new container to the registry
+    - name: Add new container to the inventory list
       add_host:
         hostname: "{{ container_name }}"
         ansible_connection: docker
@@ -62,4 +62,3 @@
       docker_container:
         name: "{{ container_name }}"
         state: absent
-
