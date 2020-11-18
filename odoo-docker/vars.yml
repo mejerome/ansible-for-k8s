@@ -3,3 +3,6 @@ postgres_version: "10"
 odoo_version: "latest"
 container_name: "odoo-server"
 published_ports: "8069:8069"
+ansible_python_interpreter: /usr/bin/python3
+
+# suqv-ej96-2uem
