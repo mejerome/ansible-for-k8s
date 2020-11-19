@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Stop wordpress server
+      docker_container:
+        name: wpcontainer
+        state: stopped
+
+    - name: Stop mariadb server
+      docker_container:
+        name: wordpressdb
+        state: stopped

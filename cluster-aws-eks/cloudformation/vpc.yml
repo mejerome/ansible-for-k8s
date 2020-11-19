@@ -1,0 +1,41 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: VPC and network configuration for an EKS cluster.
+
+Parameters:
+  Region:
+    Type: String
+    Default: us-east-1
+    Description: AWS Region for the VPC.
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+    CidrBlock: 172.16.0.0/16
+    EnableDnsSupport: true
+    EnableDnsHostnames: true
+    Tags:
+      - Key: Name
+        Value: eks-example
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+    Tags:
+      - Key: Name
+        Value: eks-example
+
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+      - Key: Name
+        Value: eks-example

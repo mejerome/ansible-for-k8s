@@ -4,5 +4,8 @@ odoo_version: "latest"
 container_name: "odoo-server"
 published_ports: "8069:8069"
 ansible_python_interpreter: /usr/bin/python3
+postgres_username: odoo
+postgres_password: odoo
+db_name: odoo
 
 # suqv-ej96-2uem

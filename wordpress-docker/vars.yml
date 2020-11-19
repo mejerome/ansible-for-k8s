@@ -1,0 +1,11 @@
+---
+mariadb_tag: "latest"
+wordpress_tag: "latest"
+nginx_tag: "latest"
+ansible_python_interpreter: /usr/bin/python3
+
+# mariadb vars
+sql_root_password: "aqwe123"
+sql_user: "wpuser"
+sql_password: "wpuser@"
+wordpressdb: "wordpress_db"

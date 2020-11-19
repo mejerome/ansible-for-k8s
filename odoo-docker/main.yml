@@ -22,9 +22,9 @@
         image: "postgres:{{ postgres_version }}"
         detach: yes
         env:
-          POSTGRES_USER: odoo
-          POSTGRES_PASSWORD: odoo
-          POSTGRES_DB: postgres
+          POSTGRES_USER: "{{ postgres_username }}"
+          POSTGRES_PASSWORD: "{{ postgres_password }}"
+          POSTGRES_DB: "{{ db_name }}"
 
     - name: Start the Odoo server
       docker_container:

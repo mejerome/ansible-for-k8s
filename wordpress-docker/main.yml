@@ -1,0 +1,58 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Pull mariadb image
+      docker_image:
+        name: "mariadb:{{ mariadb_tag }}"
+        source: pull
+
+    - name: Pull wordpress image
+      docker_image:
+        name: "wordpress:{{ wordpress_tag }}"
+        source: pull
+
+    - name: Pull nginx image
+      docker_image:
+        name: "nginx:{{ nginx_tag }}"
+        source: pull
+
+    - name: Ensure necessary wordpress directories
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - '~/wordpress'
+        - '~/wordpress/database'
+        - '~/wordpress/html'
+
+    - name: Start mariadb server
+      docker_container:
+        name: wordpressdb
+        image: "mariadb:{{ mariadb_tag }}"
+        volumes: ~/wordpress/database:/var/lib/mysql
+        detach: yes
+        env:
+          MYSQL_ROOT_PASSWORD: "{{ sql_root_password }}"
+          MYSQL_USER: "{{ sql_user }}"
+          MYSQL_PASSWORD: "{{ sql_password }}"
+          MYSQL_DATABASE: "{{ wordpressdb }}"
+
+    - name: Start wordpress server
+      docker_container:
+        name: wpcontainer
+        image: "wordpress:{{ wordpress_tag }}"
+        volumes: ~/wordpress/html:/var/www/html
+        detach: yes
+        links:
+          - "wordpressdb:mysql"
+        published_ports:
+          - "8081:80"
+        env:
+          WORDPRESS_DB_USER: "{{ sql_user }}"
+          WORDPRESS_DB_PASSWORD: "{{ sql_password }}"
+          WORDPRESS_DB_NAME: "{{ wordpressdb }}"
