@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true
+
+  roles:
+      - role: geerlingguy.docker
+
+  tasks:
+      - import_tasks: setup.yml
+      - import_tasks: docker.yml

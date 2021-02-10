@@ -7,7 +7,7 @@ import (
 )
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "<h1>Hello, fa no s3 wagyimi na suro mbaa! </h1>")
+	fmt.Fprintln(w, "<h1>Hi, fa no s3 wagyimi na suro mbaa! </h1>")
 	log.Printf("Received request for path: %s", r.URL.Path)
 }
 
