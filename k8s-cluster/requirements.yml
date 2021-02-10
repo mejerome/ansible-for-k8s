@@ -1,6 +1,7 @@
 ---
+# ansible-galaxy install -r requirements.yml
 roles:
-  - name: geerlingguy.security
-  - name: geerlingguy.swap
-  - name: geerlingguy.docker
-  - name: geerlingguy.kubernetes
+    - name: geerlingguy.security
+    - name: geerlingguy.swap
+    - name: geerlingguy.docker
+    - name: geerlingguy.kubernetes
