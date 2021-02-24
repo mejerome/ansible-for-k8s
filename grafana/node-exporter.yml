@@ -1,0 +1,12 @@
+---
+- name: Start node exporter server
+  docker_container:
+    name: node_exporter
+    container_image: quay.io/prometheus/node-exporter:latest
+    command:
+      - "--path.rootfs=/host"
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - "/:/host:ro,rslave"

@@ -1,0 +1,11 @@
+---
+- hosts: metrics
+  become: true
+
+  vars_files:
+    - vars.yml
+
+  roles:
+    - cloudalchemy.node-exporter
+    - cloudalchemy.prometheus
+    - cloudalchemy.grafana

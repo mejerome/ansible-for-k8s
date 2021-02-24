@@ -1,0 +1,11 @@
+prometheus_targets:
+  node: # This is a base file name. File is located in "{{ prometheus_config_dir }}/file_sd/<<BASENAME>>.yml"
+    - targets: #
+        - localhost:9100 # All this is a targets section in file_sd format
+        - 192.168.10.3:9100
+      labels: #
+        env: test #
+
+grafana_security:
+  admin_user: admin
+  admin_password: 3rp@dm1n
