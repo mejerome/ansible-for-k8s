@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  # become: true
+
+  vars_files:
+    - group_vars/all/vars.yml
+  
+  roles:
+  - { role: elasticsearch, tags: ["elasticsearch"] }
+  - { role: kibana, tags: ["kibana"] }
+  - { role: logstash, tags: ["logstash"] }
+  - { role: nginx, tags: ["nginx"] }
